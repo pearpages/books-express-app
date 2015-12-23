@@ -4,10 +4,11 @@ var port = process.env.PORT || 5000; //process.env is defined in the gulpfile, s
 
 // looks in folders in this order
 app.use(express.static('public')); //serves static files that are in the public folder
-app.use(express.static('src/views'));
+app.set('views', './src/views');
+app.set('view engine','jade');
 
 app.get('/',function(req, res) {
-    res.send('hello world');
+    res.render('index');
 });
 
 app.get('/books',function(req, res) {

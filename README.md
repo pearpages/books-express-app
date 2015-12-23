@@ -22,3 +22,9 @@ Tasks to automate with Gulp
     * wiredep (e.g. bower)
     * gulp-inject (own code)
 * gulp-nodemon: if any files change, nodemon will automatically restart your node application
+
+## Templating Systems
+
+* Jade (has to be compiled) ```.jade```
+* Handlebars (minimalist templating engine) ```.hbs```
+*
