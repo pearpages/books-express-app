@@ -8,17 +8,17 @@
 * Brackets
 * Visual Studio
 
-## Versions
-
-* ^4.13.3
-* ~4.13.3
-* 4.13.3
-
 ## Gulp
 
 Task manager for web projects. Installed with NPM. Packaged based.
 
 Tasks to automate with Gulp
 
-* JSHint (code quality)
-* JSCS (code styles)
+* Quality of code and styles
+    * gulp-jshint: JSHint (code quality)
+        * jshint-stylish
+    * gulp-jscs: JSCS (code styles)
+* Inject code
+    * wiredep (e.g. bower)
+    * gulp-inject (own code)
+* gulp-nodemon: if any files change, nodemon will automatically restart your node application
