@@ -27,7 +27,14 @@ Tasks to automate with Gulp
 
 * Jade (has to be compiled) ```.jade```
 * Handlebars (minimalist templating engine) ```.hbs```
-* ejs
+* EJS ```.ejs```
+
+### EJS
+
+```
+app.set('views', './src/views');
+app.set('view engine','ejs');
+```
 
 ```
 <ul class="nav navbar-nav">
@@ -35,4 +42,20 @@ Tasks to automate with Gulp
     <li><a href="#"><%=list[i]%></a></li>
     <%}%>
 </ul>
+```
+
+## Routing
+
+```javascript
+bookRouter.route('/')
+    .get(function(req,res) {
+        res.send('Hello Books');
+    });
+
+bookRouter.route('/single')
+    .get(function(req,res) {
+        res.send('Hello Single Book');
+    });
+
+app.use('/books', bookRouter);
 ```
