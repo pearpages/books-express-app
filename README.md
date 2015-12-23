@@ -27,4 +27,12 @@ Tasks to automate with Gulp
 
 * Jade (has to be compiled) ```.jade```
 * Handlebars (minimalist templating engine) ```.hbs```
-*
+* ejs
+
+```
+<ul class="nav navbar-nav">
+    <% for(var i=0; i<list.length; i++) {%>
+    <li><a href="#"><%=list[i]%></a></li>
+    <%}%>
+</ul>
+```

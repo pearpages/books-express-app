@@ -31,7 +31,7 @@ gulp.task('inject', function() {
         ignorePath: '../../public' //just doesn't write this part of the path
     };
 
-    return gulp.src('./src/views/*.html')
+    return gulp.src(['./src/views/*.html','./public/template.html'])
         .pipe(wiredep(options)) //bower files
         .pipe(inject(injectSrc, injectOptions)) //own files
         .pipe(gulp.dest('./src/views'));
