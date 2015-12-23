@@ -8,6 +8,10 @@
 * Brackets
 * Visual Studio
 
+## Template used
+
+[http://www.bootstrapzero.com/bootstrap-template/storystrap](http://www.bootstrapzero.com/bootstrap-template/storystrap)
+
 ## Gulp
 
 Task manager for web projects. Installed with NPM. Packaged based.
