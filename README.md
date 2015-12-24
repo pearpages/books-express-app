@@ -95,3 +95,49 @@ var require('./src/bookRouter')(nav);
 
 app.use('/books', bookRouter);
 ```
+
+## Databases
+
+### MSSQL
+
+```bash
+npm install mssql --save
+```
+
+```javascript
+var mssql = require('mssql');
+
+var databaseOptions = {
+    user: 'user',
+    password: 'password',
+    server: 'server',
+    database: 'database'
+};
+
+mssql.connect(databaseOptions,function(err) {
+    console.log(err);
+});
+```
+
+```javascript
+var mssql = require('msqsl'); //here we get the same connection already stablished. Is the way node works.
+
+var request = new mssql.Request();
+
+request.query('select top 10 whatever from table', function(err, recordset) {
+   console.log(recordset);
+});
+```
+
+```json
+[ { whatever: '1' },
+  { whatever: '1000' },
+  { whatever: '10000' },
+  { whatever: '100000' },
+  { whatever: '100001' },
+  { whatever: '100002' },
+  { whatever: '100003' },
+  { whatever: '100004' },
+  { whatever: '100005' },
+  { whatever: '100006' } ]
+```

@@ -1,0 +1,6 @@
+module.exports = {
+    user: 'user',
+    password: 'password',
+    server: 'server',
+    database: 'database'
+};
