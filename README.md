@@ -158,3 +158,16 @@ ps.prepare('select * from books wehre id = @id', function(err) {
 });
 }
 ```
+
+## MongoDB
+
+It needs a ```/mongo/db/``` directory to work.
+
+Also it's possible that we have to install **node-gyp** ```npm install -g node-gyp```
+
+```
+show dbs
+use libraryApp
+show collections
+db.books.find()
+```
