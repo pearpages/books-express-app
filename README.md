@@ -129,8 +129,8 @@ request.query('select top 10 whatever from table', function(err, recordset) {
 });
 ```
 
-```json
-[ { whatever: '1' },
+```javascript
+var result = [ { whatever: '1' },
   { whatever: '1000' },
   { whatever: '10000' },
   { whatever: '100000' },
@@ -139,5 +139,22 @@ request.query('select top 10 whatever from table', function(err, recordset) {
   { whatever: '100003' },
   { whatever: '100004' },
   { whatever: '100005' },
-  { whatever: '100006' } ]
+  { whatever: '100006' } ];
+```
+
+#### PreparedStatement
+
+```javascript
+var result;
+
+var mssql = require('mssql');
+
+var ps = new mssql.PreparedStatement();
+ps.input('id',sql.Int);
+ps.prepare('select * from books wehre id = @id', function(err) {
+    ps.execute({id:req.params.id},function(err,recordset) {
+        var result = recordset[0]; //the result is an array, so we give back the first one
+    });
+});
+}
 ```
