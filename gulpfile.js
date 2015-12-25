@@ -31,7 +31,7 @@ gulp.task('inject', function() {
         ignorePath: '../../public' //just doesn't write this part of the path
     };
 
-    return gulp.src(['./src/views/*.ejs','./public/template.html'])
+    return gulp.src(['./src/views/*.ejs'])
         .pipe(wiredep(options)) //bower files
         .pipe(inject(injectSrc, injectOptions)) //own files
         .pipe(gulp.dest('./src/views'));
@@ -40,7 +40,7 @@ gulp.task('inject', function() {
 //we run style and inject both at the same time and prior our main task. If we needed them to be run in sequence we would need to declar a dependency
 gulp.task('serve', ['style','inject'], function() {
     var options = {
-      script: 'app.js',
+      script: './src/app.js',
         delayTime: 1,
         env: {
             'PORT': 5000

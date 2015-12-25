@@ -228,3 +228,6 @@ bookRouter.route('/:id')
             });
     });
 ```
+
+## Authentication
+
