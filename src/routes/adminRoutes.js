@@ -3,7 +3,7 @@ var adminRouter = express.Router();
 var mongodb = require('mongodb').MongoClient;
 var books = [
     {
-        title: 'title title title',
+        title: 'title title title43',
         genre: 'genre',
         author: 'Blah bleh bloh',
         read: false
@@ -47,13 +47,13 @@ var router = function(nav) {
             var url = 'mongodb://localhost:27017/libraryApp'; //std mongodb port
 
             mongodb.connect(url, function(err, db) {
-                if(err){
+                if (err) {
                     res.send(err);
                 }
                 var collection = db.collection('books');
                 //collection.insertOne() <-- for one
                 collection.insertMany(books, function(err, results) {
-                    if(err){
+                    if (err) {
                         res.send(err);
                     }
                     res.send(results);

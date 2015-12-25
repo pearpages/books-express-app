@@ -161,13 +161,70 @@ ps.prepare('select * from books wehre id = @id', function(err) {
 
 ## MongoDB
 
+**Check Mongoose!!!**
+
 It needs a ```/mongo/db/``` directory to work.
 
 Also it's possible that we have to install **node-gyp** ```npm install -g node-gyp```
+
+### Some basic operations
 
 ```
 show dbs
 use libraryApp
 show collections
 db.books.find()
+db.books.find().toArray().length
+db.books.find().pretty()
+db.books.remove()
+```
+
+### Inserting
+
+```javascript
+var mongodb = require('mongodb').MongoClient;
+
+var url = 'mongodb://localhost:27017/libraryApp'; //std mongodb port
+
+mongodb.connect(url, function(err, db) {
+    if (err) {
+        res.send(err);
+    }
+    var collection = db.collection('books');
+    //collection.insertOne() <-- for one
+    collection.insertMany(books, function(err, results) {
+        if (err) {
+            res.send(err);
+        }
+        res.send(results);
+        db.close();
+    });
+});
+```
+
+### Select One by Id
+
+```javascript
+var mongodb = require('mongodb').MongoClient;
+var objectId = require('mongodb').ObjectID
+var bookRouter = express.Router();
+
+bookRouter.route('/:id')
+    .get(function(req,res) {
+        var id = new  objectId(req.params.id);
+        var url = 'mongodb://localhost:27017/libraryApp'; //std mongodb port
+
+            mongodb.connect(url, function(err, db) {
+                var collection = db.collection('books');
+                collection.findOne({_id: id}, function(err, results) {
+                    console.log(results);
+                    res.render('book',{
+                        nav: nav,
+                        title:'Books',
+                        books: results
+                    });
+                    db.close();
+                });
+            });
+    });
 ```
