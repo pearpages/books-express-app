@@ -231,3 +231,11 @@ bookRouter.route('/:id')
 
 ## Authentication
 
+```javascript
+var bodyParser = require('body-parser');
+
+//middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+
+```
