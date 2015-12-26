@@ -7,9 +7,20 @@
         authRouter.route('/sign-up')
             .post(function(req, res) {
                 console.log(req.body);
-                req.login(req.body, function() {
-                    res.redirect('/auth/profile');
+                require('../utils/mongo')(function(err, db) {
+                    var collection = db.collection('users');
+                    var user = {
+                        username: req.body.username,
+                        password: req.body.password
+                    };
+
+                    collection.insert(user, function(err, results) {
+                        req.login(results.ops[0], function() {
+                            res.redirect('/auth/profile');
+                        });
+                    });
                 });
+
             });
         authRouter.route('/profile')
             .get(function(req, res) {

@@ -38,9 +38,7 @@
 
         adminRouter.route('/add-books')
             .get(function(req, res) {
-                var url = 'mongodb://localhost:27017/libraryApp'; //std mongodb port
-
-                mongodb.connect(url, function(err, db) {
+                require('../utils/mongo')(function(err, db) {
                     if (err) {
                         res.send(err);
                     }

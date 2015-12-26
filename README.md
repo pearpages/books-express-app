@@ -177,6 +177,7 @@ db.books.find()
 db.books.find().toArray().length
 db.books.find().pretty()
 db.books.remove()
+db.dropDatabase()
 ```
 
 ### Inserting
