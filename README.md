@@ -231,6 +231,10 @@ bookRouter.route('/:id')
 
 ## Authentication
 
+```
+npm install --save cookie-parser passport express-session passport-local
+```
+
 ```javascript
 var bodyParser = require('body-parser');
 
@@ -239,3 +243,65 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
 ```
+
+### Passport
+
+Simple Authentication
+
++ Passport.initialize()
++ Passport.session()
++ Express session
+
+#### Passport User Functions
+
+User Management in the Session
+
++ passport.serializeUser()
++ passport.deserializeUser()
++ passport-local
+
+**passport.js**
+```javascript
+var cookieParser = require('cookie-parser');
+var passport = require('passport');
+var session = require('express-session');
+
+app.use(cookieParser());
+app.use(session({secret: 'library'}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user,done) {
+    done(null,user);
+});
+
+passport.deserializeUser(function(user,done) {
+    //mongo findbyid
+    done(null,user);
+});
+
+require('./strategies/local.strategy')();
+```
+
+**local.strategy.js**
+```javascript
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+module.exports = function() {
+    passport.use(new LocalStrategy({
+        usernameField: 'userName',
+        passwordField: 'password'
+        },
+        function(username, password, done) {
+            var user = {
+                username: username,
+                password: password
+            };
+            done(null, user);
+        }));
+}
+```
+
+
+
