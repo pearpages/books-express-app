@@ -103,6 +103,11 @@
                         <br>
                         <div class="col-md-2 col-sm-3 text-center">
                             Sign IN
+                            <form action="/auth/sign-in" name="sign-in-form" method="POST">
+                                <input type="text" name="username" id="username">
+                                <input type="text" name="password" id="password">
+                                <input type="submit" value="Sign in">
+                            </form>
                         </div>
                         <div class="col-md-10 col-sm-9">
                             Sign UP
