@@ -304,5 +304,7 @@ module.exports = function() {
 }
 ```
 
+## Structure, Controllers and Services
 
+### Structure
 

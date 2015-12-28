@@ -1,53 +1,19 @@
 (function() {
     var express = require('express');
-
     var bookRouter = express.Router();
-    var mongodb = require('mongodb').MongoClient;
-    var ObjectId = require('mongodb').ObjectID;
 
     var router = function(nav) {
 
+        var bookController = require('../controllers/bookController')(null,nav);
+
         //if we are not logged
-        bookRouter.use(function(req,res,next) {
-            if(!req.user) {
-                res.redirect('/');
-            }
-            next();
-        });
+        bookRouter.use(bookController.middleware);
 
         bookRouter.route('/')
-            .get(function(req, res) {
-                require('../utils/mongo')(function(err, db) {
-                    var collection = db.collection('books');
-                    collection.find().toArray(function(err, results) {
-                        res.render('books', {
-                            nav: nav,
-                            title: 'Books',
-                            books: results
-                        });
-                        db.close();
-                    });
-                });
-            });
+            .get(bookController.getIndex);
 
         bookRouter.route('/:id')
-            .get(function(req, res) {
-                var id = new ObjectId(req.params.id);
-                require('../utils/mongo')(function(err, db) {
-                    var collection = db.collection('books');
-                    collection.findOne({
-                        _id: id
-                    }, function(err, results) {
-                        console.log(results);
-                        res.render('book', {
-                            nav: nav,
-                            title: 'Books',
-                            books: results
-                        });
-                        db.close();
-                    });
-                });
-            });
+            .get(bookController.getById);
 
         return bookRouter;
     };
