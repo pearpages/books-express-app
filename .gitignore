@@ -1,5 +1,4 @@
 node_modules/
 .idea/
 public/lib
-src/config/*.js
 *.sublime*
