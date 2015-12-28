@@ -9,7 +9,7 @@
             },
             function(username, password, done) {
                 require('../../utils/mongo')(function(err, db) {
-                    var collection = db.colllection('users');
+                    var collection = db.collection('users');
                     collection.findOne({
                             username: username
                         },
