@@ -26,10 +26,16 @@
         authRouter.route('/sign-in')
             .post(passport.authenticate('local', {
                 failureRedirect: '/'
-            }), function(req,res) {
+            }), function(req, res) {
                 res.redirect('/auth/profile');
             });
         authRouter.route('/profile')
+            .all(function(req,res,next){
+                if(!req.user) {
+                    res.redirect('/');
+                }
+                next();
+            })
             .get(function(req, res) {
                 res.json(req.user);
             });
