@@ -7,6 +7,14 @@
 
     var router = function(nav) {
 
+        //if we are not logged
+        bookRouter.use(function(req,res,next) {
+            if(!req.user) {
+                res.redirect('/');
+            }
+            next();
+        });
+
         bookRouter.route('/')
             .get(function(req, res) {
                 require('../utils/mongo')(function(err, db) {
